@@ -1,27 +1,43 @@
+# Caches
 __pycache__/
 **/__pycache__/
 *.pyc
 *.pyo
 .ipynb_checkpoints/
+
+# Virtualenvs
 .venv/
 venv/
+
+# Frontend deps (none, but be safe)
 node_modules/
+
+# Source notebooks + raw datasets — frontend uses pre-rendered HTML in pages/
 notebooks/
 datasets/
-rebuild_*.py
+
+# Generated executed snapshots
 pages/*.executed.ipynb
-.DS_Store
-Thumbs.db
-desktop.ini
-*.log
+
+# Local-only training + conversion scripts
+rebuild_*.py
+backend/train_*.py
+backend/convert_models_to_onnx.py
+
+# Local-only requirements (TF + jupyter stack); cloud uses api/requirements.txt
+requirements-local.txt
+backend/requirements-local.txt
 
 # Heavy training artefacts — replaced by .onnx for cloud inference
 models/*.keras
 models/*.h5
+models/*.onnx.data
+models/*.tflite
 
-# Local-only Python deps (full TF + jupyter stack); cloud uses api/requirements.txt
-requirements.txt
-backend/requirements.txt
-backend/train_*.py
-backend/convert_models_to_onnx.py
-api/__pycache__/
+# OS / IDE noise
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.log
