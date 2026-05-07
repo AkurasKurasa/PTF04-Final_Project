@@ -3,7 +3,6 @@
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/index" }
   ],
-  "cleanUrls": true,
   "build": {
     "env": {
       "PYTHONDONTWRITEBYTECODE": "1"
