@@ -1,0 +1,18 @@
+{
+  "title": "CIFAR-10 Image Classifier",
+  "subtitle": "CNN · 10 classes · 32×32 RGB",
+  "description": "Drop or upload any image. The CNN resizes it to 32×32 and predicts which of the 10 CIFAR-10 categories it belongs to: airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck.",
+  "icon": "chip",
+  "fields": [
+    {
+      "name": "image",
+      "label": "Image to classify",
+      "hint": "JPG / PNG · any size · auto-resized to 32×32",
+      "type": "image",
+      "accept": "image/png,image/jpeg,image/webp",
+      "required": true
+    }
+  ],
+  "submit_label": "Classify image",
+  "output": { "type": "label_with_probabilities" }
+}

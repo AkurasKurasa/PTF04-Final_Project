@@ -1,0 +1,19 @@
+{
+  "title": "Dogs vs Cats Classifier",
+  "subtitle": "Binary CNN · 32×32 RGB",
+  "description": "Drop a photo. The CNN decides — is it a dog or a cat? Trained on 10 000 CIFAR-10 cat + dog samples.",
+  "icon": "paw",
+  "layout": "duel",
+  "fields": [
+    {
+      "name": "image",
+      "label": "Pet photo",
+      "hint": "JPG / PNG · auto-resized to 32×32",
+      "type": "image",
+      "accept": "image/png,image/jpeg,image/webp",
+      "required": true
+    }
+  ],
+  "submit_label": "Decide!",
+  "output": { "type": "duel", "labels": ["cat", "dog"] }
+}

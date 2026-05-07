@@ -1,0 +1,18 @@
+{
+  "title": "Fashion-MNIST Classifier",
+  "subtitle": "Dense NN · 10 clothing classes · 28×28 grayscale",
+  "description": "Upload a photo of a clothing item. The network converts it to grayscale 28×28 and predicts one of: T-shirt/top, Trouser, Pullover, Dress, Coat, Sandal, Shirt, Sneaker, Bag, Ankle boot.",
+  "icon": "shirt",
+  "fields": [
+    {
+      "name": "image",
+      "label": "Clothing image",
+      "hint": "JPG / PNG · auto-converted to grayscale 28×28",
+      "type": "image",
+      "accept": "image/png,image/jpeg,image/webp",
+      "required": true
+    }
+  ],
+  "submit_label": "Classify garment",
+  "output": { "type": "label_with_probabilities" }
+}

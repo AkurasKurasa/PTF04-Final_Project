@@ -1,0 +1,14 @@
+{
+  "title": "Polynomial Regression",
+  "subtitle": "Degree-2 features · 3 inputs",
+  "description": "Linear regression on engineered polynomial features. Captures interactions between RM, LSTAT and PTRATIO.",
+  "icon": "curve",
+  "theme": "lavender",
+  "fields": [
+    { "name": "rm",      "label": "RM (rooms)",   "type": "slider", "min": 3,  "max": 9,  "step": 0.05, "default": 6.3 },
+    { "name": "lstat",   "label": "LSTAT",        "type": "slider", "min": 1,  "max": 40, "step": 0.1,  "default": 12.6 },
+    { "name": "ptratio", "label": "PTRATIO",      "type": "slider", "min": 12, "max": 23, "step": 0.1,  "default": 18.5 }
+  ],
+  "submit_label": "Predict (degree 2)",
+  "output": { "type": "currency", "format": "usd" }
+}

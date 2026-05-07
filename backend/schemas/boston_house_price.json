@@ -1,0 +1,43 @@
+{
+  "title": "Boston House Price Predictor",
+  "subtitle": "Neural network · 3 features · MEDV in $1000s",
+  "description": "Drag the sliders to set neighbourhood characteristics. The trained Keras model predicts the median house price.",
+  "icon": "house",
+  "fields": [
+    {
+      "name": "rm",
+      "label": "Average rooms per dwelling",
+      "hint": "Bigger homes → higher price",
+      "type": "slider",
+      "min": 3.5,
+      "max": 9.0,
+      "step": 0.05,
+      "default": 6.0,
+      "unit": "rooms"
+    },
+    {
+      "name": "lstat",
+      "label": "% lower-status population (LSTAT)",
+      "hint": "Lower is wealthier",
+      "type": "slider",
+      "min": 1,
+      "max": 40,
+      "step": 0.1,
+      "default": 12.0,
+      "unit": "%"
+    },
+    {
+      "name": "ptratio",
+      "label": "Pupil-teacher ratio (PTRATIO)",
+      "hint": "Lower means smaller classrooms",
+      "type": "slider",
+      "min": 12,
+      "max": 23,
+      "step": 0.1,
+      "default": 15.0,
+      "unit": ":1"
+    }
+  ],
+  "submit_label": "Predict price",
+  "output": { "type": "currency", "format": "usd" }
+}

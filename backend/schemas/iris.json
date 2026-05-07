@@ -1,0 +1,15 @@
+{
+  "title": "Iris MLP Classifier",
+  "subtitle": "Neural Net · 3 species",
+  "description": "Sklearn MLP (16 → 8 → 3) trained on the iris dataset.",
+  "icon": "flower",
+  "theme": "navy",
+  "fields": [
+    { "name": "sepal_length", "label": "Sepal length", "unit": "cm", "type": "slider", "min": 0, "max": 10, "step": 0.1, "default": 5.1 },
+    { "name": "sepal_width",  "label": "Sepal width",  "unit": "cm", "type": "slider", "min": 0, "max": 10, "step": 0.1, "default": 3.5 },
+    { "name": "petal_length", "label": "Petal length", "unit": "cm", "type": "slider", "min": 0, "max": 10, "step": 0.1, "default": 1.4 },
+    { "name": "petal_width",  "label": "Petal width",  "unit": "cm", "type": "slider", "min": 0, "max": 10, "step": 0.1, "default": 0.2 }
+  ],
+  "submit_label": "Classify",
+  "output": { "type": "label_with_probabilities" }
+}

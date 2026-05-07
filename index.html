@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paul Andrei Calma · PTF04 Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main id="app">
+
+    <!-- ========== HOME VIEW ========== -->
+    <section id="home" class="view view-active">
+      <header class="site-header">
+        <div class="site-mark">P.A.C.</div>
+        <nav class="site-nav">
+          <a href="#" data-action="goto-projects">Projects</a>
+          <a href="#" data-action="goto-about">About</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <p class="hero-eyebrow"><span class="dot"></span>PTF04 · Final Portfolio · 2026</p>
+        <h1 class="hero-title">
+          Machine Learning &amp;<br/>
+          <span class="title-italic-wrap">
+            <em>Data Science</em>
+            <svg class="hero-underline" viewBox="0 0 320 14" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M3,9 C 50,3 110,12 170,7 C 230,2 280,11 317,6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+            </svg>
+          </span>
+          Notebooks.
+        </h1>
+        <p class="hero-lede" id="about">
+          <span class="drop-cap">A</span> collection of Jupyter notebooks by <strong>Paul Andrei Calma</strong>,
+          submitted for <strong>PTF04</strong> — exploring data, models, and the small stories hiding in CSV files.
+        </p>
+
+        <div class="hero-tools">
+          <div class="tools-track">
+            <span class="tool-chip">Python</span>
+            <span class="tool-chip">Pandas</span>
+            <span class="tool-chip">NumPy</span>
+            <span class="tool-chip">scikit-learn</span>
+            <span class="tool-chip">Matplotlib</span>
+            <span class="tool-chip">Seaborn</span>
+            <span class="tool-chip">Jupyter</span>
+            <span class="tool-chip">SQL</span>
+            <span class="tool-chip">EDA</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats">
+        <div class="stat">
+          <div class="stat-num" id="stat-projects">—</div>
+          <div class="stat-label">Notebooks</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <div class="stat-num" id="stat-cells">—</div>
+          <div class="stat-label">Cells of Code</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <div class="stat-num">2026</div>
+          <div class="stat-label">Class Year</div>
+        </div>
+      </section>
+
+      <div class="ornament" aria-hidden="true">※</div>
+
+      <section class="projects">
+        <div class="section-label">
+          <span>Selected Work</span>
+          <span class="section-count" id="proj-count"></span>
+        </div>
+        <ol id="project-list" class="project-list"></ol>
+      </section>
+
+      <footer class="site-footer">
+        <div>© 2026 Paul Andrei Calma · PTF04</div>
+        <div class="footer-meta">Built with vanilla HTML · CSS · JS</div>
+      </footer>
+    </section>
+
+    <!-- ========== DETAIL VIEW ========== -->
+    <section id="detail" class="view">
+      <header class="detail-header">
+        <div class="detail-header-row">
+          <button class="back-btn" id="back-btn">
+            <span class="back-arrow">←</span>
+            <span>Back to projects</span>
+          </button>
+          <div class="detail-actions">
+            <span class="mode-badge" id="mode-badge" title="Toggle with ?author=1 in URL">VIEWER</span>
+            <button class="run-btn ghost" id="reload-btn" title="Reload from .ipynb on disk (no execute)">
+              <span>↻</span>
+              <span>Reload</span>
+            </button>
+            <button class="run-btn" id="run-all-btn" title="Re-execute every cell server-side and refresh">
+              <span class="run-icon">▶</span>
+              <span>Run All Cells</span>
+            </button>
+          </div>
+        </div>
+        <div class="detail-progress" id="detail-progress"></div>
+      </header>
+
+      <article class="detail-body">
+        <p class="detail-eyebrow" id="detail-num"></p>
+        <h1 class="detail-title" id="detail-title"></h1>
+        <p class="detail-desc" id="detail-desc"></p>
+
+        <div class="detail-tabs">
+          <button class="tab-btn active" data-tab="notebook">Notebook</button>
+          <button class="tab-btn" data-tab="demo">Demo</button>
+        </div>
+
+        <div class="detail-tab-panel" id="tab-notebook">
+          <div class="notebook-content" id="notebook-stage"></div>
+        </div>
+
+        <div class="detail-tab-panel hidden" id="tab-demo">
+          <div class="demo-stage" id="demo-stage">
+            <p class="demo-empty">Demo coming soon.</p>
+          </div>
+        </div>
+
+        <nav class="detail-nav">
+          <button class="detail-nav-btn" id="detail-prev">
+            <span class="dn-hint">Previous</span>
+            <span class="dn-name" id="detail-prev-name">—</span>
+          </button>
+          <button class="detail-nav-btn align-right" id="detail-next">
+            <span class="dn-hint">Next</span>
+            <span class="dn-name" id="detail-next-name">—</span>
+          </button>
+        </nav>
+      </article>
+    </section>
+
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

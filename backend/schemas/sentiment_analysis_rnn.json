@@ -1,0 +1,20 @@
+{
+  "title": "Sentiment Analysis",
+  "subtitle": "Bidirectional LSTM · IMDB-trained",
+  "description": "Type or paste any English text. The recurrent network scores it from negative (0) to positive (1).",
+  "icon": "wave",
+  "layout": "stacked",
+  "fields": [
+    {
+      "name": "text",
+      "label": "Text to analyse",
+      "hint": "Movie review, product review, tweet, anything…",
+      "type": "textarea",
+      "rows": 6,
+      "default": "I absolutely loved every minute of this. The story was gripping and the performances were unforgettable.",
+      "required": true
+    }
+  ],
+  "submit_label": "Analyse sentiment",
+  "output": { "type": "sentiment" }
+}

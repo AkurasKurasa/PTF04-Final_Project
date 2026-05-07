@@ -1,0 +1,25 @@
+{
+  "title": "Multiple Regression",
+  "subtitle": "Keras NN · 13 features",
+  "description": "Full 13-feature deep regression. Adjust the inputs to estimate the median home value.",
+  "icon": "grid",
+  "theme": "forest",
+  "layout": "grid",
+  "fields": [
+    { "name": "crim",    "label": "CRIM (crime rate)",   "type": "slider", "min": 0,  "max": 90,  "step": 0.1, "default": 3.6 },
+    { "name": "zn",      "label": "ZN (large lots %)",   "type": "slider", "min": 0,  "max": 100, "step": 1,   "default": 11 },
+    { "name": "indus",   "label": "INDUS (non-retail %)","type": "slider", "min": 0,  "max": 30,  "step": 0.1, "default": 11 },
+    { "name": "chas",    "label": "CHAS (river dummy)",  "type": "slider", "min": 0,  "max": 1,   "step": 1,   "default": 0 },
+    { "name": "nox",     "label": "NOX (NO₂ ppm)",       "type": "slider", "min": 0.3,"max": 0.9, "step": 0.01,"default": 0.55 },
+    { "name": "rm",      "label": "RM (rooms)",          "type": "slider", "min": 3,  "max": 9,   "step": 0.05,"default": 6.3 },
+    { "name": "age",     "label": "AGE (% older homes)", "type": "slider", "min": 0,  "max": 100, "step": 1,   "default": 68 },
+    { "name": "dis",     "label": "DIS (distance jobs)", "type": "slider", "min": 1,  "max": 12,  "step": 0.05,"default": 3.8 },
+    { "name": "rad",     "label": "RAD (highway access)","type": "slider", "min": 1,  "max": 24,  "step": 1,   "default": 9 },
+    { "name": "tax",     "label": "TAX",                  "type": "slider", "min": 180,"max": 720, "step": 1,   "default": 408 },
+    { "name": "ptratio", "label": "PTRATIO",              "type": "slider", "min": 12, "max": 23,  "step": 0.1, "default": 18.5 },
+    { "name": "b",       "label": "B (Black population)", "type": "slider", "min": 0,  "max": 400, "step": 1,   "default": 357 },
+    { "name": "lstat",   "label": "LSTAT",                "type": "slider", "min": 1,  "max": 40,  "step": 0.1, "default": 12.6 }
+  ],
+  "submit_label": "Predict price",
+  "output": { "type": "currency", "format": "usd" }
+}
