@@ -282,7 +282,25 @@ async function loadDemo(proj) {
       renderSchemaDemo(stage, slug, schema, proj);
       return;
     }
-  } catch (e) { /* fall through */ }
+    if (res.status === 404) {
+      // Schema not configured — fall through to JupyterLab iframe
+    }
+  } catch (e) {
+    // Backend offline (e.g. on Vercel) — show static notice
+    stage.innerHTML = `
+      <div class="demo-empty">
+        <h3 style="margin:0 0 8px;font-family:var(--serif);font-size:1.4rem;">Live demo unavailable on this host</h3>
+        <p style="max-width:480px;margin:0 auto 12px;">
+          The interactive demo requires a Python backend (Flask + TensorFlow).
+          Run the project locally to use the live model:
+        </p>
+        <code style="display:block;max-width:540px;margin:8px auto;padding:10px 14px;background:var(--bg-soft);border-radius:8px;font-size:0.84rem;">
+          python backend/app.py
+        </code>
+      </div>
+    `;
+    return;
+  }
 
   // Fallback: JupyterLab iframe
   const nbName = proj.file.replace(/\.html$/i, ".ipynb");
