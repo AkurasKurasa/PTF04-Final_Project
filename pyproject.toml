@@ -1,0 +1,13 @@
+[project]
+name = "ptf04-portfolio"
+version = "1.0.0"
+description = "ML notebook portfolio with live ONNX-backed demos"
+requires-python = ">=3.10"
+dependencies = [
+    "flask>=3.0",
+    "scikit-learn>=1.4",
+    "joblib>=1.3",
+    "numpy>=1.26",
+    "pillow>=10.0",
+    "onnxruntime>=1.18",
+]
