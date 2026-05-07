@@ -1,13 +1,5 @@
-// API base — empty string for local Flask (same origin), "/_/backend" for Vercel multi-service.
-const API_BASE = (() => {
-  if (typeof window === "undefined") return "";
-  // Vercel deploy hostnames or explicit override
-  if (window.__API_BASE__) return window.__API_BASE__;
-  if (location.hostname.endsWith(".vercel.app") || location.hostname.endsWith(".vercel.sh")) {
-    return "/_/backend";
-  }
-  return "";
-})();
+// API base — same origin for both local Flask + Vercel (rewrites /api/* to backend/app.py)
+const API_BASE = (typeof window !== "undefined" && window.__API_BASE__) || "";
 const api = (path) => `${API_BASE}${path}`;
 
 async function loadProjects() {
