@@ -1,0 +1,16 @@
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+.venv/
+venv/
+node_modules/
+notebooks/
+datasets/
+rebuild_*.py
+pages/*.executed.ipynb
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
