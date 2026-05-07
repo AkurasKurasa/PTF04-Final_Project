@@ -1,3 +1,15 @@
+// API base — empty string for local Flask (same origin), "/_/backend" for Vercel multi-service.
+const API_BASE = (() => {
+  if (typeof window === "undefined") return "";
+  // Vercel deploy hostnames or explicit override
+  if (window.__API_BASE__) return window.__API_BASE__;
+  if (location.hostname.endsWith(".vercel.app") || location.hostname.endsWith(".vercel.sh")) {
+    return "/_/backend";
+  }
+  return "";
+})();
+const api = (path) => `${API_BASE}${path}`;
+
 async function loadProjects() {
   const res = await fetch("pages/manifest.json");
   if (!res.ok) return [];
@@ -135,7 +147,7 @@ async function reloadCurrent(force = false) {
   }
 
   try {
-    const res = await fetch(`/api/refresh/${slug}`, { method: "POST" });
+    const res = await fetch(api(`/api/refresh/${slug}`), { method: "POST" });
     const body = await res.json();
     if (!res.ok) throw new Error(body.error || "Reload failed");
 
@@ -197,7 +209,7 @@ function runAllCurrent() {
     if (codeTotal > 0) bar.style.width = `${(done / codeTotal) * 100}%`;
   };
 
-  const es = new EventSource(`/api/run-stream/${slug}`);
+  const es = new EventSource(api(`/api/run-stream/${slug}`));
 
   es.onmessage = async (e) => {
     let data;
@@ -276,7 +288,7 @@ async function loadDemo(proj) {
 
   // Try schema-driven custom GUI
   try {
-    const res = await fetch(`/api/${slug}/schema`);
+    const res = await fetch(api(`/api/${slug}/schema`));
     if (res.ok) {
       const schema = await res.json();
       renderSchemaDemo(stage, slug, schema, proj);
@@ -603,10 +615,10 @@ function renderSchemaDemo(stage, slug, schema, proj) {
       if (hasFile) {
         // multipart/form-data — let browser set Content-Type
         const fd = new FormData(form);
-        res = await fetch(`/api/${slug}/predict`, { method: "POST", body: fd });
+        res = await fetch(api(`/api/${slug}/predict`), { method: "POST", body: fd });
       } else {
         const data = Object.fromEntries(new FormData(form).entries());
-        res = await fetch(`/api/${slug}/predict`, {
+        res = await fetch(api(`/api/${slug}/predict`), {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data),
@@ -898,7 +910,7 @@ function renderDemoForm(stage, slug, schema) {
     const result = document.getElementById("demo-result");
     result.innerHTML = `<div class="demo-thinking">Predicting…</div>`;
     try {
-      const res = await fetch(`/api/${slug}/predict`, {
+      const res = await fetch(api(`/api/${slug}/predict`), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -1040,7 +1052,7 @@ async function runCell(slug, cellEl, ta, runBtn, statusEl) {
   const t0 = performance.now();
 
   try {
-    const res = await fetch(`/api/cell/${slug}`, {
+    const res = await fetch(api(`/api/cell/${slug}`), {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
