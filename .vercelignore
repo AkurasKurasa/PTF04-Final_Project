@@ -18,3 +18,10 @@ desktop.ini
 # Heavy training artefacts — replaced by .onnx for cloud inference
 models/*.keras
 models/*.h5
+
+# Local-only Python deps (full TF + jupyter stack); cloud uses api/requirements.txt
+requirements.txt
+backend/requirements.txt
+backend/train_*.py
+backend/convert_models_to_onnx.py
+api/__pycache__/
