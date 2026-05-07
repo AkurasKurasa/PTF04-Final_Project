@@ -14,3 +14,7 @@ pages/*.executed.ipynb
 Thumbs.db
 desktop.ini
 *.log
+
+# Heavy training artefacts — replaced by .onnx for cloud inference
+models/*.keras
+models/*.h5
