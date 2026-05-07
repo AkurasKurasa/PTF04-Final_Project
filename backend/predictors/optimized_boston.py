@@ -3,30 +3,30 @@ import pathlib
 import joblib
 import numpy as np
 
+from ._onnx_helper import get_session, run
+
 MODELS_DIR = pathlib.Path(__file__).resolve().parent.parent.parent / "models"
-MODEL_PATH = MODELS_DIR / "boston_optimized.keras"
+MODEL_PATH = MODELS_DIR / "boston_optimized.onnx"
 SCALER_PATH = MODELS_DIR / "boston_optimized_scaler.pkl"
 
-_model = None
 _scaler = None
 
 
-def _load():
-    global _model, _scaler
-    if _model is None:
-        from tensorflow.keras.models import load_model
-        _model = load_model(MODEL_PATH)
+def _scaler_load():
+    global _scaler
+    if _scaler is None:
         _scaler = joblib.load(SCALER_PATH)
-    return _model, _scaler
+    return _scaler
 
 
 def predict(data: dict, files):
-    model, scaler = _load()
+    sess = get_session(MODEL_PATH)
+    scaler = _scaler_load()
     rm = float(data["rm"])
     lstat = float(data["lstat"])
     ptratio = float(data["ptratio"])
-    arr = scaler.transform(np.array([[rm, lstat, ptratio]]))
-    medv = float(model.predict(arr, verbose=0)[0][0])
+    arr = scaler.transform(np.array([[rm, lstat, ptratio]])).astype(np.float32)
+    medv = float(run(sess, arr)[0][0])
     return {
         "value": medv * 1000.0,
         "raw_medv": medv,

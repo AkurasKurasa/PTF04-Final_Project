@@ -1,45 +1,35 @@
 from __future__ import annotations
 import pathlib
-
 import joblib
 import numpy as np
 
+from ._onnx_helper import get_session, run
+
 MODELS_DIR = pathlib.Path(__file__).resolve().parent.parent.parent / "models"
-MODEL_PATH = MODELS_DIR / "boston_house_price.keras"
+MODEL_PATH = MODELS_DIR / "boston_house_price.onnx"
 SCALER_PATH = MODELS_DIR / "boston_house_price_scaler.pkl"
 
-_model = None
 _scaler = None
 
 
-def _load():
-    global _model, _scaler
-    if _model is None:
-        if not MODEL_PATH.exists():
-            raise FileNotFoundError(
-                f"Model not found at {MODEL_PATH}. Run the Boston notebook end-to-end first."
-            )
+def _scaler_load():
+    global _scaler
+    if _scaler is None:
         if not SCALER_PATH.exists():
-            raise FileNotFoundError(
-                f"Scaler not found at {SCALER_PATH}. Run the Boston notebook end-to-end first."
-            )
-        # Lazy import keras so module load doesn't block on TF
-        from tensorflow.keras.models import load_model
-        _model = load_model(MODEL_PATH)
+            raise FileNotFoundError(f"Scaler missing: {SCALER_PATH}")
         _scaler = joblib.load(SCALER_PATH)
-    return _model, _scaler
+    return _scaler
 
 
 def predict(data: dict, files):
-    model, scaler = _load()
+    sess = get_session(MODEL_PATH)
+    scaler = _scaler_load()
 
     rm = float(data["rm"])
     lstat = float(data["lstat"])
     ptratio = float(data["ptratio"])
-
-    sample = np.array([[rm, lstat, ptratio]])
-    sample_scaled = scaler.transform(sample)
-    raw = float(model.predict(sample_scaled, verbose=0)[0][0])
+    sample = scaler.transform(np.array([[rm, lstat, ptratio]])).astype(np.float32)
+    raw = float(run(sess, sample)[0][0])
     usd = raw * 1000.0
 
     return {

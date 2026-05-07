@@ -13,7 +13,7 @@
     "api/index.py": {
       "memory": 1024,
       "maxDuration": 60,
-      "excludeFiles": "{notebooks,datasets,pages,.git,.vercel,node_modules,.venv,venv}/**,models/*.{keras,h5,onnx},models/sentiment_vocab.json,**/__pycache__/**,**/*.pyc"
+      "excludeFiles": "{notebooks,datasets,pages,.git,.vercel,node_modules,.venv,venv}/**,models/*.{keras,h5},**/__pycache__/**,**/*.pyc"
     }
   }
 }
